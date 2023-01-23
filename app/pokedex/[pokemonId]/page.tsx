@@ -1,8 +1,11 @@
 import React from 'react'
+import GetPokemonById from '../GetPokemonById'
 
-export default function PokemonInfo({ params }) {
-  console.log(params.pokemonId)
+export default function PokemonInfo({ params: {pokemonId} } : {params: {pokemonId: string}}) {
+
   return (
-    <div>PokemonInfo</div>
+    <div>
+      <GetPokemonById id={pokemonId}/>
+    </div>
   )
 }
