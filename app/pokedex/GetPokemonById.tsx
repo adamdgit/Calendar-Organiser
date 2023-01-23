@@ -15,9 +15,9 @@ const fetchPokemonData= async (ID: number) => {
   return { pokemonData };
 }
 
-export default async function GetPokemonById() {
+export default async function GetPokemonById({ id } : { id: number }) {
 
-  const { pokemonData } = await fetchPokemonData(6);
+  const { pokemonData } = await fetchPokemonData(id);
 
   return (
     <div>
