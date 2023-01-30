@@ -1,11 +1,24 @@
 import React from 'react'
 import GetPokemonById from '../GetPokemonById'
+import { PokemonDataProps } from "@/types";
 
-export default function PokemonInfo({ params: {pokemonId} } : {params: {pokemonId: string}}) {
+const fetchPokemonData = async (ID: number) => {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${ID}`)
+  const data = await res.json()
+  const pokemonData: PokemonDataProps = {
+    id: data.id,
+    name: data.name,
+    moves: data.moves,
+    sprite: data.sprites.front_default
+  }
+  return { pokemonData };
+}
+
+export default async function PokemonInfo({ params: {pokemonId} } : {params: {pokemonId: string}}) {
+
+  const { pokemonData } = await fetchPokemonData(Number(pokemonId));
 
   return (
-    <div>
-      <GetPokemonById id={pokemonId}/>
-    </div>
+    <GetPokemonById data={pokemonData}/>
   )
 }

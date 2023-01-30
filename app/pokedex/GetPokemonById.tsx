@@ -1,39 +1,25 @@
 import React from 'react'
 import Image from 'next/image';
-import { PokemonDataProps } from "../../types";
 import styles from './styles.module.css'
+import { PokemonDataProps } from '@/types';
 
-const fetchPokemonData= async (ID: number) => {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${ID}`)
-  const data = await res.json()
-  const pokemonData: PokemonDataProps = {
-    id: data.id,
-    name: data.name,
-    moves: data.moves,
-    sprite: data.sprites.front_default
-  }
-  return { pokemonData };
-}
-
-export default async function GetPokemonById({ id } : { id: number }) {
-
-  const { pokemonData } = await fetchPokemonData(id);
+export default function GetPokemonById({ data } : { data: PokemonDataProps }) {
 
   return (
     <div>
-      <h2>{pokemonData?.name.toUpperCase()}</h2>
+      <h2>{data?.name.toUpperCase()}</h2>
         {
-          pokemonData && 
+          data && 
           <Image 
-            key={pokemonData.id}
-            src={pokemonData?.sprite} 
-            alt={pokemonData?.name + "sprite"} 
+            key={data.id}
+            src={data?.sprite} 
+            alt={data?.name + "sprite"} 
             width={96} height={96}
           />
         }
         <ul className={styles.moveList}>
           {
-            pokemonData.moves.map((move, i) => (
+            data?.moves.map((move, i) => (
               <li key={i}>{move.move.name}</li>
             ))
           }
