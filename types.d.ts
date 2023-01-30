@@ -4,3 +4,8 @@ export type PokemonDataProps = {
   moves: [],
   sprite: string
 }
+
+export type generationList = [{
+  name: string,
+  url: string
+}]
