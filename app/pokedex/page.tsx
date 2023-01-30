@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import React, { FormEvent, useRef } from 'react'
+import PokemonList from "./PokemonList"
 
 export default function Pokedex() {
 
@@ -20,6 +21,8 @@ export default function Pokedex() {
         <input type="text" ref={searchInput} />
         <button type="submit">Search by ID</button>
       </form>
+
+      <PokemonList />
     </div>
   )
 }
