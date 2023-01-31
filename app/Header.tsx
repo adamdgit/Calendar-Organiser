@@ -11,7 +11,6 @@ export default function Header() {
         <Link href="/pokedex">Pokedex</Link>
         <Link href="/more">More</Link>
       </nav>
-      <h1>Pokemon App</h1>
     </header>
   )
 }
