@@ -9,7 +9,9 @@ const fetchPokemonData = async (ID: number) => {
     id: data.id,
     name: data.name,
     moves: data.moves,
-    sprite: data.sprites.front_default
+    sprite: data.sprites.front_default,
+    shiny: data.sprites.front_shiny,
+    stats: data.stats
   }
   return { pokemonData };
 }
