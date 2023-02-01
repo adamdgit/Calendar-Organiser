@@ -2,7 +2,9 @@ export type PokemonDataProps = {
   id: number,
   name: string,
   moves: [],
-  sprite: string
+  sprite: string,
+  shiny: string,
+  stats: []
 }
 
 export type generationList = [{
