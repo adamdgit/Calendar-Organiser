@@ -47,6 +47,7 @@ export default function Pokedex() {
   return (
     <div>
       <h2>Pokedex</h2>
+      <span>Search for a Pokemon:</span>
       <input type="text" onChange={(e) => handleSearch(e.target.value)} />
 
       <div className={styles.namelist}>
