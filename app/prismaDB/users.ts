@@ -13,6 +13,28 @@ export async function getUser(email:string) {
   }
 }
 
+export async function getTeam(authorID:number) {
+  try {
+    const team = await prisma.team.findFirst({ 
+      select: {
+        name: true,
+        pokemon: {
+          select: {
+            name: true
+          }
+        }
+      },
+      where: { 
+        authorID: authorID 
+      }
+    })
+    return { team }
+  } catch (error) {
+    return { error }
+  }
+}
+
+
 export async function createUser(email: string, name: string) {
   try {
     const user = await prisma.user.create({ 
