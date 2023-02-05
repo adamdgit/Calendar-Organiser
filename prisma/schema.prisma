@@ -8,7 +8,7 @@ generator client {
 datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
-  relationMode = "prisma"
+  relationMode = "foreignKeys"
 }
 
 model User {
@@ -16,26 +16,28 @@ model User {
   email String @unique
   name String?
   profileImgUrl String?
-  team Team?
+  team Team[] // many teams
   role Role @default(USER)
 }
 
+// one-to-many relation. Many Teams to one User
 model Team {
   id Int @id @default(autoincrement())
   name String
-  pokemon Pokemon[]
-  authorID Int @unique
-  user User @relation(fields: [authorID], references: [id])
+  pokemon Pokemon[] // many pokemon
+  author User @relation(fields: [authorID], references: [id])
+  authorID Int
 }
 
+// one-to-many relation. Many pokemon to one Team
 model Pokemon { 
   id Int @id @default(autoincrement()) 
-  teamId Int @unique
-  name String 
-  team Team @relation(fields: [teamId], references: [id])
+  name String // pokemon name
+  team Team @relation(fields: [teamID], references: [id])
+  teamID Int
 } 
 
 enum Role {
   ADMIN
-  USER
+  USER // default
 }
