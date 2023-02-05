@@ -1,12 +1,15 @@
 import React from 'react'
-import Users from "./Users"
+import { getUser } from "./prismaDB/users"
 
-export default function Home() {
-
+export default async function Home() {
+  const { user } = await getUser('adam_d@outlook.com')
+  
   return (
     <div>
       <h1>Your Team</h1>
-      <Users />
+      {
+        user && <p>{ user?.id }</p>
+      }
     </div>
   )
 }
