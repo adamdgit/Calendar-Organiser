@@ -9,7 +9,6 @@ export default function Header() {
       <nav className={styles.navbar}>
         <Link href="/">Home</Link>
         <Link href="/pokedex">Pokedex</Link>
-        <Link href="/more">More</Link>
       </nav>
     </header>
   )
