@@ -1,14 +1,17 @@
 import React from "react";
 import Header from "./Header";
 import '../styles/globals.css';
+import Providers from "./providers";
 
 export default function RootLayout({ children } : { children : React.ReactNode }) {
   return (
     <html lang="en">
       <head />
       <body>
-        <Header />
-        {children}
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
