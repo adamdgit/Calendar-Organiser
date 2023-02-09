@@ -9,3 +9,20 @@
   color: white;
   text-decoration: none;
 }
+
+.form {
+  display: grid;
+  justify-content: center;
+  padding: 2rem;
+  background: #333;
+  width: 500px;
+}
+
+.form label {
+  text-align: center;
+}
+
+.form input {
+  width: 300px;
+  padding: 10px 1rem;
+}
