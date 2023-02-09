@@ -1,17 +1,5 @@
 import prisma from ".";
 
-export async function getUser(email:string) {
-  try {
-    const user = await prisma.user.findUnique({ 
-      where: { 
-        email: email 
-      }
-    })
-    return { user }
-  } catch (error) {
-    return { error }
-  }
-}
 
 export async function getTeam(authorID:number) {
   try {
@@ -34,13 +22,14 @@ export async function getTeam(authorID:number) {
   }
 }
 
+// create functions below--
 
-export async function createUser(email: string, name: string) {
+export async function createNewTeam(name: string, authorID: number) {
   try {
-    const user = await prisma.user.create({ 
+    const user = await prisma.team.create({ 
       data: { 
-        email: email,
-        name: name
+        name: name,
+        authorID: authorID
       }, 
       select: { id: true } 
     })
