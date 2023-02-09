@@ -1,14 +1,28 @@
+'use client'
+
 import Link from 'next/link'
 import React from 'react'
 import styles from './styles.module.css'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 export default function Header() {
 
+  const session = useSession();
+
   return (
-    <header>
+    <header className={styles.header}>
       <nav className={styles.navbar}>
         <Link href="/">Home</Link>
         <Link href="/pokedex">Pokedex</Link>
+        {session.status === 'authenticated' ? 
+          <button onClick={() => signOut({ callbackUrl: 'http://localhost:3000' })}>
+            Sign out
+          </button>
+          : 
+          <button className={styles.signin} onClick={() => signIn("google", { callbackUrl: 'http://localhost:3000' })}>
+            Sign in with Google
+          </button>
+        }
       </nav>
     </header>
   )

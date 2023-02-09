@@ -1,5 +1,9 @@
+.header {
+}
+
 .navbar {
   display: flex;
+  align-items: center;
   gap: 1rem;
   background-color: rgb(37, 37, 37);
   padding: 2rem;
@@ -10,19 +14,12 @@
   text-decoration: none;
 }
 
-.form {
-  display: grid;
-  justify-content: center;
-  padding: 2rem;
-  background: #333;
-  width: 500px;
+.signin {
+  cursor: pointer;
+  margin-left: auto;
+  padding: 10px 15px;
+  background: #111;
+  color: #eee;
 }
 
-.form label {
-  text-align: center;
-}
-
-.form input {
-  width: 300px;
-  padding: 10px 1rem;
-}
+.signin:hover { background: #2078ca; }
