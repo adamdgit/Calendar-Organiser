@@ -1,27 +1,33 @@
+'use client'
+
 import React from 'react'
-import { getUser, getTeam } from "./prismaDB/users"
+import Link from "next/link"
+import { useSession } from 'next-auth/react'
+import styles from './styles.module.css'
 
-export default async function Home() {
+export default function Home() {
   
+  const session = useSession();
+  console.log(session)
 
-    const { user } = await getUser('adam_d@outlook.com')
-    const { team } = await getTeam(user?.id)
-    
-  
-  return (
-    <div>
-      <h1>Your Team</h1>
-      {
-        user && <p>{ `User: ${user?.id} ${user?.name}` }</p>
-      }
-      {
-        team && <div>
-          <p>{team.name}</p>
-          {team.pokemon.map(pokemon => (
-            pokemon.name
-          ))}
-        </div>
-      }
-    </div>
-  )
+  if (session.status === 'authenticated') {
+    return (
+      <div>
+        <h2>Hello {session.data.user?.name}</h2>
+        <Link href="/api/auth/signout">Sign Out</Link>
+      </div> 
+    )
+  } else {
+    return (
+      <>
+        <form className={styles.form}>
+          <h1>Sign in with Google</h1>
+          <label htmlFor="email">Email</label>
+          <input id="email" type="email" required={true} />
+          <label htmlFor="password">Password</label>
+          <input id="password" type="password" required={true} />
+        </form>
+      </>
+    )
+  }
 }
