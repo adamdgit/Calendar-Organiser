@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import styles from './styles.module.css'
 
 export default function Home() {
-
+  
   const session = useSession();
   console.log(session)
 
