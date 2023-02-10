@@ -15,7 +15,7 @@ export default function Header() {
         <Link href="/">Home</Link>
         <Link href="/pokedex">Pokedex</Link>
         {session.status === 'authenticated' ? 
-          <button onClick={() => signOut({ callbackUrl: 'http://localhost:3000' })}>
+          <button className={styles.signin} onClick={() => signOut({ callbackUrl: 'http://localhost:3000' })}>
             Sign out
           </button>
           : 
