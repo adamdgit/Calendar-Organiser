@@ -14,12 +14,36 @@
   text-decoration: none;
 }
 
+.loginwrap {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-left: auto;
+}
+
 .signin {
   cursor: pointer;
-  margin-left: auto;
   padding: 10px 15px;
   background: #111;
   color: #eee;
+  transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .signin:hover { background: #2078ca; }
+
+.username {
+  font-weight: bold;
+}
+
+.team {
+  display: flex;
+  gap: 1rem;
+}
+
+.teamItem {
+  border: 3px dashed #ddd;
+  box-shadow: 3px 3px 15px 0 black;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+}
