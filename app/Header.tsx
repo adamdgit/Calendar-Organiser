@@ -15,9 +15,12 @@ export default function Header() {
         <Link href="/">Home</Link>
         <Link href="/pokedex">Pokedex</Link>
         {session.status === 'authenticated' ? 
-          <button className={styles.signin} onClick={() => signOut({ callbackUrl: 'http://localhost:3000' })}>
-            Sign out
-          </button>
+          <div className={styles.loginwrap}>
+            <span className={styles.username}>Hello {session.data.user?.name}</span>
+            <button className={styles.signin} onClick={() => signOut({ callbackUrl: 'http://localhost:3000' })}>
+              Sign out
+            </button>
+          </div>
           : 
           <button className={styles.signin} onClick={() => signIn("google", { callbackUrl: 'http://localhost:3000' })}>
             Sign in with Google
