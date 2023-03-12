@@ -63,7 +63,7 @@ model VerificationToken {
 
 // one-to-many relation. Many events to one User
 model Event {
-  id            String    @id @default(cuid())
+  id            String    @id @default (cuid())
   date          String
   description   String
   user          User      @relation(fields: [authorEmail], references: [email])
