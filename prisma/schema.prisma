@@ -49,7 +49,7 @@ model User {
   accounts        Account[]
   sessions        Session[]
   image           String?
-  calendarEvent   Event[]    // many teams
+  calendarEvent   Event[]    // many calendar events
   role            Role      @default(USER)
 }
 
@@ -66,10 +66,10 @@ model Event {
   id            String    @id @default(cuid())
   date          String
   description   String
-  user          User      @relation(fields: [authorID], references: [id])
-  authorID      String
+  user          User      @relation(fields: [authorEmail], references: [email])
+  authorEmail   String
 
-  @@index([authorID])
+  @@index([authorEmail])
 }
 
 enum Role {

@@ -1,3 +1,5 @@
+/*-----Adam Demol 2022-----*/
+
 .header {
   display: flex;
   padding: 2rem;
@@ -23,4 +25,197 @@
 
 .username {
   font-weight: bold;
+}
+
+.App {
+  display: flex;
+  max-height: 100vh;
+}
+
+.left {
+  width: 40vw;
+  border-right: 1px solid #333a41;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.left h1 {
+  margin-bottom: 2rem;
+}
+
+.right {
+  width: 60vw;
+  padding: 2rem;
+}
+
+.right h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: white;
+  background-color: #4a545e;
+  padding: 2rem;
+  width: 500px;
+  height: 500px;
+  pointer-events: none;
+  box-shadow: 0 0 0 10000px rgba(24, 24, 24, 0.7);
+  z-index: 9999;
+}
+
+.popup .heading {
+  font-size: 1.6rem;
+}
+
+.popup textarea {
+  width: 300px;
+  max-width: 350px;
+  height: 200px;
+}
+
+.popup button {
+  cursor: pointer;
+  padding: 1rem 2rem;
+}
+
+/*--- Local storage left pane ---*/
+
+.lsItemsWrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.monthEventWrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.lsItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  gap: 1rem;
+  background-color: #333a41;
+  padding: 1.5rem;
+  align-items: center;
+}
+
+.lsItem:hover {
+  background-color: #4d5a66;
+}
+
+.lsItemText {
+  display: grid;
+  gap: .6rem;
+}
+
+.removeBtn, .editbtn {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  fill: white;
+  background: #333a41;
+}
+
+/*-----Calendar styles-----*/
+
+.datepickerContainer {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 750px;
+  height: fit-content;
+  text-align: center;
+  box-shadow: 3px 3px 15px #161616;
+  color: #111;
+}
+
+.datepickerDates {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.datepickerHeader {
+  background:linear-gradient(white, #cbcbcb);
+}
+
+.datepickerDates .pickYearSelect, .pickMonthSelect {
+  padding: 5px 20px;
+}
+
+.datepickerDaysRow {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid #222;
+  background: white;
+  height: 4rem;
+}
+
+.datepickerDaysRow .day { 
+  padding-block: 20px;
+}
+
+.date {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: unset;
+  color: white;
+  background-color: #4d5a66;
+  font-size: 1.1rem;
+}
+
+.date:hover {
+  background: #74b5e3;
+  color: black;
+}
+
+.eventNumber {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: .9rem;
+  z-index: 9999;
+  color: #55d0ff;
+}
+
+.dateRange{
+  display: grid;
+  margin: 20px 0;
+}
+
+.monthWrap {
+  display: grid;
+  grid-template-columns:repeat(7, auto);
+  gap: 1px;
+  background: #333a41;
+  color: white;
+}
+
+.hide { display: none; }
+
+.show { display: grid; }
+
+.notCurrentMonth { color:#111; }
+
+.today { background-color: #333a41; }
+
+@media screen and (max-width: 600px) {
+
 }

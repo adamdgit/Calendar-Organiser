@@ -1,27 +1,24 @@
 import prisma from ".";
 
-// TODO: remove / repurpose later
-export async function getTeam(authorID:string) {
+// get users calendar events
+export async function getUserEvents(email:string) {
   try {
-    const team = await prisma.team.findFirst({ 
+    const events = await prisma.event.findFirst({ 
       select: {
-        name: true,
-        pokemon: {
-          select: {
-            name: true
-          }
-        }
+        date: true,
+        description: true,
       },
       where: { 
-        authorID: authorID 
+        authorEmail: email 
       }
     })
-    return { team }
+    return { events }
   } catch (error) {
     return { error }
   }
 }
 
+// get logged-in users info
 export async function getUserIDByEmail(email:string) {
   try {
     const authorID = await prisma.user.findFirst({ 
@@ -36,6 +33,4 @@ export async function getUserIDByEmail(email:string) {
   } catch (error) {
     return { error }
   }
-}
-
 }
