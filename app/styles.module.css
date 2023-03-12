@@ -1,17 +1,7 @@
 .header {
-}
-
-.navbar {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  background-color: rgb(37, 37, 37);
   padding: 2rem;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
+  background-color: #222;
 }
 
 .loginwrap {
@@ -26,24 +16,11 @@
   padding: 10px 15px;
   background: #111;
   color: #eee;
-  transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .signin:hover { background: #2078ca; }
 
 .username {
   font-weight: bold;
-}
-
-.team {
-  display: flex;
-  gap: 1rem;
-}
-
-.teamItem {
-  border: 3px dashed #ddd;
-  box-shadow: 3px 3px 15px 0 black;
-  width: 200px;
-  height: 200px;
-  border-radius: 20px;
 }

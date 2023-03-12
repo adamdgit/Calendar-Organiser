@@ -1,7 +1,7 @@
 import prisma from ".";
 
-
-export async function getTeam(authorID:number) {
+// TODO: remove / repurpose later
+export async function getTeam(authorID:string) {
   try {
     const team = await prisma.team.findFirst({ 
       select: {
@@ -22,21 +22,20 @@ export async function getTeam(authorID:number) {
   }
 }
 
-// create functions below--
-
-export async function createNewTeam(name: string, authorID: number) {
+export async function getUserIDByEmail(email:string) {
   try {
-    const user = await prisma.team.create({ 
-      data: { 
-        name: name,
-        authorID: authorID
-      }, 
-      select: { id: true } 
+    const authorID = await prisma.user.findFirst({ 
+      select: {
+        id: true
+      },
+      where: { 
+        email: email 
+      }
     })
-    console.log(user)
-    return { user }
-  } catch ( error ) {
+    return { authorID }
+  } catch (error) {
     return { error }
   }
+}
 
 }

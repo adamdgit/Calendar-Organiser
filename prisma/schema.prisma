@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -42,15 +42,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  accounts      Account[]
-  sessions      Session[]
-  image         String?
-  team          Team[]    // many teams
-  role          Role      @default(USER)
+  id              String    @id @default(cuid())
+  name            String?
+  email           String?   @unique
+  emailVerified   DateTime?
+  accounts        Account[]
+  sessions        Session[]
+  image           String?
+  calendarEvent   Event[]    // many teams
+  role            Role      @default(USER)
 }
 
 model VerificationToken {
@@ -61,26 +61,16 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// one-to-many relation. Many Teams to one User
-model Team {
-  id        String      @id @default(cuid())
-  name      String
-  pokemon   Pokemon[]   // many pokemon
-  user      User        @relation(fields: [authorID], references: [id])
-  authorID  String
+// one-to-many relation. Many events to one User
+model Event {
+  id            String    @id @default(cuid())
+  date          String
+  description   String
+  user          User      @relation(fields: [authorID], references: [id])
+  authorID      String
 
   @@index([authorID])
 }
-
-// one-to-many relation. Many pokemon to one Team
-model Pokemon { 
-  id      String    @id @default(cuid())
-  name    String    // pokemon name
-  team    Team      @relation(fields: [teamID], references: [id])
-  teamID  String
-
-  @@index([teamID])
-} 
 
 enum Role {
   ADMIN
