@@ -1,6 +1,5 @@
 'use client'
 
-import { useSession } from 'next-auth/react';
 import React, { useState } from 'react'
 import Calendar from './Calendar';
 import EventPopup from './eventPopup';
@@ -14,43 +13,37 @@ export type calendarEventProps = {
   authorEmail: string
 }
 
-export default function App({ calendarEvents }: calendarEventProps) {
+export default function App({ events }:calendarEventProps[]) {
 
-  const session = useSession();
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [popupIsVisible, setPopupIsVisible] = useState<boolean>(false);
-  const [lsItems, setLsItems] = useState<calendarEventProps[]>(calendarEvents)
+  const [lsItems, setLsItems] = useState<calendarEventProps[]>(events)
 
+  return (
+    <div className={styles.App}>
+      <EventPopup 
+        popupIsVisible={popupIsVisible} 
+        setPopupIsVisible={setPopupIsVisible}
+        selectedDate={selectedDate}
+        setLsItems={setLsItems}
+      />
 
-  if (session.status === 'authenticated') {
-    return (
-      <div className={styles.App}>
-        <EventPopup 
-          popupIsVisible={popupIsVisible} 
-          setPopupIsVisible={setPopupIsVisible}
-          selectedDate={selectedDate}
+      <div className={styles.left}>
+        <h1>Your saved events:</h1>
+        <UserEvents 
           setLsItems={setLsItems}
+          lsItems={lsItems}
         />
-
-        <div className={styles.left}>
-          <h1>Your saved events:</h1>
-          <UserEvents 
-            setLsItems={setLsItems}
-            lsItems={lsItems}
-          />
-        </div>
-
-        <div className={styles.right}>
-          <h2>Select a day to add events</h2>
-          <Calendar 
-            setPopupIsVisible={setPopupIsVisible}
-            setSelectedDate={setSelectedDate}
-            lsItems={lsItems}
-          />
-        </div>
       </div>
-    )} else {
-      return <div></div>
-    }
 
+      <div className={styles.right}>
+        <h2>Select a day to add events</h2>
+        <Calendar 
+          setPopupIsVisible={setPopupIsVisible}
+          setSelectedDate={setSelectedDate}
+          lsItems={lsItems}
+        />
+      </div>
+    </div>
+  )
 }
