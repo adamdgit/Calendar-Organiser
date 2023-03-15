@@ -19,7 +19,20 @@ export default function EventPopup({ popupIsVisible, setPopupIsVisible, selected
   const [description, setDescription] = useState<string>('')
 
   async function insertEventToDatabase() {
+    const res = await fetch("/api/events", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ 
+        email: session.data.user.email, 
+        date: selectedDate,
+        description: description
+      })
+    });
 
+    const data = await res.json();
+    console.log(data);
   };
   
   return (
