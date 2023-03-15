@@ -1,22 +1,25 @@
 'use client'
 
+import { useSession } from "next-auth/react"
 import { useState } from "react"
 import styles from '../styles.module.css'
+import { calendarEventProps } from "./App"
 
 type eventPopupProps = {
   popupIsVisible: boolean,
   setPopupIsVisible: (args: boolean) => void,
   selectedDate: Date,
-  setLsItems: (args: []) => void
+  setLsItems: (args: calendarEventProps[]) => void
 }
 
-export default function eventPopup({ popupIsVisible, setPopupIsVisible, selectedDate, setLsItems } 
+export default function EventPopup({ popupIsVisible, setPopupIsVisible, selectedDate, setLsItems } 
   : eventPopupProps ) {
-  
+
+  const session = useSession();
   const [description, setDescription] = useState<string>('')
 
-  function insertEventToDatabase() {
-    // create new event inside database
+  async function insertEventToDatabase() {
+
   };
   
   return (
