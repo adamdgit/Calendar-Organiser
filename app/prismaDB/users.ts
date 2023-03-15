@@ -15,14 +15,13 @@ export async function getUserEvents(email:string) {
 
 // create new event for user
 export async function createEvent(email:string, date: string, description: string) {
-  const eventInfo = {
-    email: email,
-    date: date,
-    description: description
-  }
   try {
     await prisma.event.create({
-      data: eventInfo
+      data: {
+        authorEmail: email,
+        date: date,
+        description: description
+      }
     })
     const { events } = await getUserEvents(email)
     return events
