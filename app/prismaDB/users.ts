@@ -4,10 +4,28 @@ import prisma from ".";
 export async function getUserEvents(email:string) {
   try {
     const events = await prisma.user.findMany({ 
-      select: {calendarEvent: true},
+      select: { calendarEvent: true },
       where: { email: email }
     })
     return { events }
+  } catch (error) {
+    return { error }
+  }
+}
+
+// create new event for user
+export async function createEvent(email:string, date: string, description: string) {
+  const eventInfo = {
+    email: email,
+    date: date,
+    description: description
+  }
+  try {
+    await prisma.event.create({
+      data: eventInfo
+    })
+    const { events } = await getUserEvents(email)
+    return events
   } catch (error) {
     return { error }
   }
