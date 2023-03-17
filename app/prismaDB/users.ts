@@ -7,7 +7,7 @@ export async function getUserEvents(email:string) {
       select: { calendarEvent: true },
       where: { email: email }
     })
-    return { events }
+    return events
   } catch (error) {
     return { error }
   }
@@ -15,6 +15,7 @@ export async function getUserEvents(email:string) {
 
 // create new event for user
 export async function createEvent(email:string, date: string, description: string) {
+  let errorMsg: boolean | any = false;
   try {
     await prisma.event.create({
       data: {
@@ -23,11 +24,37 @@ export async function createEvent(email:string, date: string, description: strin
         description: description
       }
     })
-    const { events } = await getUserEvents(email)
-    return events
   } catch (error) {
-    return { error }
+    errorMsg = error
   }
+  return { errorMsg }
+}
+
+// update event by event id
+export async function updateEvent(id:string, description: string) {
+  let errorMsg: boolean | any = false;
+  try {
+    await prisma.event.update({
+      where: { id: id },
+      data: { description: description }
+    })
+  } catch (error) {
+    errorMsg = error
+  }
+  return { errorMsg }
+}
+
+// delete selected event by event id
+export async function deleteEvent(id: string) {
+  let errorMsg: boolean | any = false;
+  try {
+    await prisma.event.delete({
+      where: { id: id }
+    })
+  } catch (error) {
+    errorMsg = error
+  }
+  return { errorMsg }
 }
 
 // get logged-in users info
