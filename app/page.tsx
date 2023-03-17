@@ -6,7 +6,7 @@ import { getUserEvents } from "./prismaDB/users";
 export default async function Home() {
 
   const session = await getServerSession(authOptions)
-  const { events } = await getUserEvents(session.email)
+  const events = await getUserEvents(session.email)
 
   if (session) {
     return <App events={events[0].calendarEvent} />
