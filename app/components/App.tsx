@@ -17,7 +17,7 @@ export default function App({ events }:calendarEventProps[]) {
 
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [popupIsVisible, setPopupIsVisible] = useState<boolean>(false);
-  const [lsItems, setLsItems] = useState<calendarEventProps[]>(events)
+  const [eventItems, setEventItems] = useState<calendarEventProps[]>(events)
 
   return (
     <div className={styles.App}>
@@ -25,14 +25,14 @@ export default function App({ events }:calendarEventProps[]) {
         popupIsVisible={popupIsVisible} 
         setPopupIsVisible={setPopupIsVisible}
         selectedDate={selectedDate}
-        setLsItems={setLsItems}
+        setEventItems={setEventItems}
       />
 
       <div className={styles.left}>
         <h1>Your saved events:</h1>
         <UserEvents 
-          setLsItems={setLsItems}
-          lsItems={lsItems}
+          setEventItems={setEventItems}
+          eventItems={eventItems}
         />
       </div>
 
@@ -41,7 +41,7 @@ export default function App({ events }:calendarEventProps[]) {
         <Calendar 
           setPopupIsVisible={setPopupIsVisible}
           setSelectedDate={setSelectedDate}
-          lsItems={lsItems}
+          eventItems={eventItems}
         />
       </div>
     </div>
