@@ -15,11 +15,11 @@ for (let i=1; i<20; i++) {
 type calendarProps = {
   setPopupIsVisible: (args: boolean) => void,
   setSelectedDate: (args: string) => void,
-  lsItems: []
+  eventItems: []
 }
 
 export default function Calendar(
-  { setPopupIsVisible, setSelectedDate, lsItems }: calendarProps) {
+  { setPopupIsVisible, setSelectedDate, eventItems }: calendarProps) {
 
   const monthSelect = useRef();
   const yearSelect = useRef();
@@ -98,7 +98,7 @@ export default function Calendar(
                 setPopupIsVisible={setPopupIsVisible}
                 setSelectedDate={setSelectedDate}
                 day={day}
-                lsItems={lsItems}
+                eventItems={eventItems}
               />
             ))
           }

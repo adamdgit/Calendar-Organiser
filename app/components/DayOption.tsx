@@ -8,11 +8,11 @@ type dayOptionProps = {
   monthSelect: any,
   setPopupIsVisible: (args: boolean) => void,
   setSelectedDate: (args: string) => void,
-  lsItems: []
+  eventItems: []
 }
 
 export default function DayOption(
-  { day, monthSelect, setPopupIsVisible, setSelectedDate, lsItems } 
+  { day, monthSelect, setPopupIsVisible, setSelectedDate, eventItems } 
   : dayOptionProps) {
 
   // number of events for this day 
@@ -27,13 +27,13 @@ export default function DayOption(
   useMemo(() => {
     // calculate number of items for each day
     let count = 0
-    lsItems.forEach(item => {
+    eventItems.forEach(item => {
       if (new Date(item.Date).toLocaleString('en-au') === new Date(day).toLocaleString('en-au')) {
         count += 1
       }
     })
     setNumEvents(count)
-  },[lsItems, day])
+  },[eventItems, day])
 
   return (
     <div style={{position: 'relative'}}>
