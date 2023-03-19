@@ -2,8 +2,10 @@
 
 .header {
   display: flex;
+  align-items: center;
   padding: 2rem;
-  background-color: #333a41;
+  background-color: var(--theme-red);
+  color: #ededed;
 }
 
 .loginwrap {
@@ -22,7 +24,7 @@
   margin-left: auto;
 }
 
-.signin:hover { background: #2078ca; }
+.signin:hover { background: var(--theme-bone); color: #111; }
 
 .username {
   font-weight: bold;
@@ -34,9 +36,9 @@
 
 .left {
   width: 40vw;
-  border-right: 1px solid #333a41;
   padding: 2rem;
   overflow-y: auto;
+  background: var(--theme-bone);
 }
 
 .left h1 {
@@ -46,6 +48,7 @@
 .right {
   width: 60vw;
   padding: 2rem;
+  background: #fff;
 }
 
 .right h2 {
@@ -114,14 +117,15 @@
   display: grid;
   grid-template-columns: 1fr 20px;
   gap: 1rem;
-  background-color: #333a41;
+  background-color: var(--theme-blue);
+  color: #ededed;
   padding: 1.5rem;
   align-items: center;
 }
 
-.lsItem:hover {
-  background-color: #4d5a66;
-}
+.lsItem:hover { background-color: var(--theme-red); }
+
+.lsItem:hover svg { background: var(--theme-red); }
 
 .lsItemText {
   display: grid;
@@ -129,11 +133,67 @@
 }
 
 .removeBtn, .editbtn {
+  position: relative;
   cursor: pointer;
   width: 15px;
   height: 15px;
   fill: white;
-  background: #333a41;
+  background: var(--theme-blue);
+}
+
+.editbtn:hover .editTooltip {
+  top: 40px;
+  opacity: 1;
+}
+
+.removeBtn:hover .removeTooltip {
+  top: 40px;
+  opacity: 1;
+}
+
+.editTooltip, .removeTooltip {  
+  opacity: 0;
+  pointer-events: none;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: white;
+  height: 3rem;
+  z-index: 88888;
+  transition: 200ms ease-in-out;
+}
+
+.editTooltip {
+  top: 50px;
+  left: 30px;
+  width: 10rem;
+}
+
+.removeTooltip {
+  top: 50px;
+  left: -100px;
+  width: 8rem;
+}
+
+.upArrow {
+  position: absolute;
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid white;
+  z-index: 99999;
+}
+
+.editTooltip .upArrow {
+  top: -5px;
+  left: 10px;
+}
+
+.removeTooltip .upArrow {
+  top: -5px;
+  right: 15px;
 }
 
 /*-----Calendar styles-----*/
@@ -144,7 +204,7 @@
   max-width: 750px;
   height: fit-content;
   text-align: center;
-  box-shadow: 3px 3px 15px #161616;
+  box-shadow: 3px 3px 15px #4b4b4b;
   color: #111;
 }
 
@@ -187,13 +247,13 @@
   aspect-ratio: 1/1;
   background: unset;
   color: white;
-  background-color: #4d5a66;
+  background-color: var(--theme-blue);
   font-size: 1.1rem;
 }
 
 .date:hover {
-  background: #74b5e3;
-  color: black;
+  background: var(--theme-red);
+  color: #fff;
 }
 
 .eventNumber {
@@ -202,7 +262,7 @@
   left: 5px;
   font-size: .9rem;
   z-index: 9999;
-  color: #55d0ff;
+  color: var(--theme-red);
 }
 
 .dateRange{
@@ -214,7 +274,7 @@
   display: grid;
   grid-template-columns:repeat(7, auto);
   gap: 1px;
-  background: #333a41;
+  background: #566064;
   color: white;
 }
 
@@ -222,9 +282,9 @@
 
 .show { display: grid; }
 
-.notCurrentMonth { color:#111; }
+.notCurrentMonth { color:#696969; }
 
-.today { background-color: #333a41; }
+.today { background-color: #E0DFD5; color: #111; }
 
 @media screen and (max-width: 600px) {
 
