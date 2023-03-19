@@ -47,7 +47,7 @@ export default function Calendar(
 
           <div className={styles.datepickerDates}>
             <span className={styles.pickYear}>Year: 
-              <select ref={yearSelect} onChange={() => showHideCalendarMonths()} className="pick-year-select">
+              <select ref={yearSelect} onChange={() => showHideCalendarMonths()}>
                 {
                   yearData.map(year => (
                     <option 
@@ -60,7 +60,7 @@ export default function Calendar(
               </select>
             </span>
             <span className={styles.pickMonth}>Month: 
-              <select ref={monthSelect} onChange={() => showHideCalendarMonths()} className="pick-month-select">
+              <select ref={monthSelect} onChange={() => showHideCalendarMonths()}>
                 <option value="0">January</option>
                 <option value="1">February</option>
                 <option value="2">March</option>
