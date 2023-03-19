@@ -37,7 +37,11 @@ export default function DayOption(
 
   return (
     <div style={{position: 'relative'}}>
-      <div className={styles.eventNumber}>{numEvents === 0 ? null : numEvents}</div>
+      <div 
+        className={styles.eventNumber} 
+        style={numEvents === 0 ? {} : {display: 'flex'}}>
+        {numEvents === 0 ? null : numEvents}
+      </div>
       <button
         onClick={(e) => handlePopup(e)}
         className={
