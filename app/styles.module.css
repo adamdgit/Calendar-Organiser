@@ -196,6 +196,25 @@
   right: 15px;
 }
 
+.saveChanges {
+  background: var(--theme-bone);
+  width: 60px;
+  height: 30px;
+}
+
+.updateMessage {
+  position: absolute;
+  opacity: 0;
+  background: var(--theme-blue);
+  border: 2px solid var(--theme-blue);
+  color: white;
+  padding: 1rem 2rem;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 250ms ease-in-out;
+}
+
 /*-----Calendar styles-----*/
 
 .datepickerContainer {
@@ -261,8 +280,8 @@
   top: 5px;
   left: 5px;
   font-size: .9rem;
-  z-index: 9999;
-  color: var(--theme-red);
+  z-index: 99;
+  color: #00cefd;
 }
 
 .dateRange{
