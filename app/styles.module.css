@@ -232,19 +232,29 @@
 }
 
 .datepickerHeader {
-  background:linear-gradient(white, #cbcbcb);
+  background:linear-gradient(var(--theme-blue), #566064);
+  color: white;
+  font-size: 1.1rem;
 }
 
 .datepickerDates .pickYearSelect, .pickMonthSelect {
   padding: 5px 20px;
 }
 
+.pickYear {
+  display: flex;
+  gap: 1rem;
+}
+
+.pickMonth {
+  display: flex;
+  gap: 1rem;
+}
+
 .datepickerDaysRow {
   display: grid;
   align-items: center;
   grid-template-columns: repeat(7, 1fr);
-  border-bottom: 1px solid #222;
-  background: white;
   height: 4rem;
 }
 
