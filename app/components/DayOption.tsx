@@ -27,8 +27,8 @@ export default function DayOption(
   useMemo(() => {
     // calculate number of items for each day
     let count = 0
-    eventItems.forEach(item => {
-      if (new Date(item.Date).toLocaleString('en-au') === new Date(day).toLocaleString('en-au')) {
+    eventItems.map(item => {
+      if (new Date(item.date).toLocaleString('en-au') === new Date(day).toLocaleString('en-au')) {
         count += 1
       }
     })
