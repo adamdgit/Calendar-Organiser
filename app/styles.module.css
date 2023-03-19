@@ -16,7 +16,6 @@
 }
 
 .signin {
-  cursor: pointer;
   padding: 10px 15px;
   background: #111;
   color: #eee;
@@ -86,7 +85,6 @@
 }
 
 .submitBtn {
-  cursor: pointer;
   padding: 1rem 2rem;
 }
 
@@ -94,7 +92,6 @@
   position: absolute;
   top: -15px;
   right: -15px;
-  cursor: pointer;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -134,7 +131,6 @@
 
 .removeBtn, .editbtn {
   position: relative;
-  cursor: pointer;
   width: 15px;
   height: 15px;
   fill: white;
@@ -258,7 +254,6 @@
 
 .date {
   position: relative;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
