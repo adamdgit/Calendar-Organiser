@@ -19,7 +19,7 @@ export default function EventPopup({ popupIsVisible, setPopupIsVisible, selected
   const [description, setDescription] = useState<string>('')
 
   async function insertEventToDatabase() {
-    const res = await fetch("/api/createevent", {
+    await fetch("/api/createevent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -29,8 +29,10 @@ export default function EventPopup({ popupIsVisible, setPopupIsVisible, selected
         date: selectedDate,
         description: description
       })
-    });
-    console.log(res.status)
+    })
+    .then(res => res.json())
+    .then(data => setEventItems(data[0].calendarEvent))
+
     setPopupIsVisible(false);
   };
   
