@@ -3,13 +3,18 @@ import { calendarEventProps } from "./App";
 import styles from "../styles.module.css"
 import Tooltip from "./Tooltip";
 
-export default function EventItem({ item } : calendarEventProps) {
+type eventItemProps = {
+  item: calendarEventProps,
+  setEventItems: (args: calendarEventProps[]) => void
+}
+
+export default function EventItem({ item, setEventItems } : eventItemProps) {
 
   const [editEnabled, setEditEnabled] = useState(false)
   const [desc, setDesc] = useState(item.description)
 
   async function deleteEventByID(id: string) {
-    const res = await fetch("/api/deleteEvent", {
+    await fetch("/api/deleteEvent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -17,12 +22,14 @@ export default function EventItem({ item } : calendarEventProps) {
       body: JSON.stringify({ 
         id: id
       })
-    });
+    })
+    .then(res => res.json())
+    .then(data => setEventItems(data[0].calendarEvent));
   };
 
   async function updateEventByID(id: string, description: string) {
     setEditEnabled(false);
-    const res = await fetch("/api/updateEvent", {
+    await fetch("/api/updateEvent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -31,7 +38,9 @@ export default function EventItem({ item } : calendarEventProps) {
         id: id,
         description: description
       })
-    });
+    })
+    .then(res => res.json())
+    .then(data => setEventItems(data[0].calendarEvent));
   };
 
   return (
