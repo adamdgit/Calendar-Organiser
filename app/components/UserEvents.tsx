@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from '../styles.module.css'
 import { calendarEventProps } from "./App";
-import EventItem from "./eventItem";
+import EventItem from "./EventItem";
 
 type lsItemsProps = {
   eventItems: calendarEventProps[],
@@ -36,7 +36,11 @@ export default function UserEvents({ eventItems, setEventItems } : lsItemsProps)
             eventItems?.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
             .map((item, i) => 
               new Date(item.date).toLocaleString('en-au', {month: 'long'}) === month ? 
-                <EventItem key={i} item={item} />
+                <EventItem 
+                  key={i} 
+                  item={item} 
+                  setEventItems={setEventItems} 
+                />
               : null
             )
           }
