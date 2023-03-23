@@ -24,7 +24,8 @@ export default function EventItem({ item, setEventItems } : eventItemProps) {
       })
     })
     .then(res => res.json())
-    .then(data => setEventItems(data[0].calendarEvent));
+    .then(data => setEventItems(data[0].calendarEvent))
+    .catch(err => console.error(err));
   };
 
   async function updateEventByID(id: string, description: string) {
@@ -40,7 +41,8 @@ export default function EventItem({ item, setEventItems } : eventItemProps) {
       })
     })
     .then(res => res.json())
-    .then(data => setEventItems(data[0].calendarEvent));
+    .then(data => setEventItems(data[0].calendarEvent))
+    .catch(err => console.error(err));
   };
 
   return (
