@@ -5,10 +5,12 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 export default async function handler(req: Request, res: Response) {
 
   const session = getServerSession(authOptions)
+  let error = false;
 
   if (req.method !== "POST") return Error("Wrong request method") 
     const data = req.body
-    const { errorMsg } = await deleteEvent(data.id)
+    await deleteEvent(data.id)
+      .catch(err => error = err)
     const events = await getUserEvents(session.email)
-    if (!errorMsg) res.status(200).json(events)
+    if (!error) res.status(200).json(events)
 }
