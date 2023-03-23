@@ -26,12 +26,13 @@ export default function EventPopup({ popupIsVisible, setPopupIsVisible, selected
       },
       body: JSON.stringify({ 
         email: session.data.user.email, 
-        date: selectedDate,
+        date: new Date(selectedDate),
         description: description
       })
     })
     .then(res => res.json())
     .then(data => setEventItems(data[0].calendarEvent))
+    .catch(err => console.error(err))
 
     setPopupIsVisible(false);
   };
