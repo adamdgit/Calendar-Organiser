@@ -20,7 +20,6 @@ export default function DayOption(
 
   function handlePopup(e: any) {
     setPopupIsVisible(true);
-    // pass slected date value to popup
     setSelectedDate(e.target.value)
   }
 
