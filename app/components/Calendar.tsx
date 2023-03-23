@@ -78,13 +78,13 @@ export default function Calendar(
           </div>
 
           <div className={styles.datepickerDaysRow}>
-            <div className="day">Monday</div>
-            <div className="day">Tuesday</div>
-            <div className="day">Wednesday</div>
-            <div className="day">Thursday</div>
-            <div className="day">Friday</div>
-            <div className="day">Saturday</div>
-            <div className="day">Sunday</div>
+            <div className="day">Mon</div>
+            <div className="day">Tue</div>
+            <div className="day">Wed</div>
+            <div className="day">Thu</div>
+            <div className="day">Fri</div>
+            <div className="day">Sat</div>
+            <div className="day">Sun</div>
           </div>
         </div>
 
