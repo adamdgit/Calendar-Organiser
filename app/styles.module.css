@@ -108,7 +108,7 @@
 .yearEventWrap{
   display: grid;
   gap: 1rem;
-  box-shadow: 3px 3px 15px 0 #8d8b85;
+  border: 5px solid #a3a193;
   padding: 1rem;
 }
 
@@ -124,7 +124,7 @@
   gap: 1rem;
   background-color: var(--theme-blue);
   color: #ededed;
-  padding: 1.5rem;
+  padding: 1rem;
   align-items: center;
 }
 
@@ -345,10 +345,6 @@
 
   .left h1 {
     margin-bottom: unset;
-  }
-
-  .lsItem {
-    padding: 1rem;
   }
 
   .right {
