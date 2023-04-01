@@ -16,9 +16,9 @@ export type calendarEventProps = {
 
 export default function App({ events }:calendarEventProps[]) {
 
-  const [selectedDate, setSelectedDate] = useState<Date>();
-  const [popupIsVisible, setPopupIsVisible] = useState<boolean>(false);
-  const [eventItems, setEventItems] = useState<calendarEventProps[]>(events)
+  const [selectedDate, setSelectedDate] = useState("");
+  const [popupIsVisible, setPopupIsVisible] = useState(false);
+  const [eventItems, setEventItems] = useState(events)
   const [updateMsg, setUpdateMsg] = useState("")
   const [needsUpdate, setNeedsUpdate] = useState(false)
 
@@ -29,6 +29,8 @@ export default function App({ events }:calendarEventProps[]) {
         setPopupIsVisible={setPopupIsVisible}
         selectedDate={selectedDate}
         setEventItems={setEventItems}
+        setUpdateMsg={setUpdateMsg}
+        setNeedsUpdate={setNeedsUpdate}
       />
 
       <div className={styles.left}>
