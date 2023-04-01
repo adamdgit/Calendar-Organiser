@@ -14,7 +14,7 @@ export type calendarEventProps = {
   authorEmail: string
 }
 
-export default function App({ events }:calendarEventProps[]) {
+export default function App({ events }:any) {
 
   const [selectedDate, setSelectedDate] = useState("");
   const [popupIsVisible, setPopupIsVisible] = useState(false);

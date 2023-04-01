@@ -12,6 +12,12 @@ for (let i=1; i<20; i++) {
   yearData.push(Number(yearData[0]) +i)
 }  
 
+const monthData = [
+  "January", "February", "March", "April", 
+  "May", "June", "July", "August", "September",
+  "October", "November", "December"
+]
+
 type calendarProps = {
   setPopupIsVisible: (args: boolean) => void,
   setSelectedDate: (args: string) => void,
@@ -21,23 +27,20 @@ type calendarProps = {
 export default function Calendar(
   { setPopupIsVisible, setSelectedDate, eventItems }: calendarProps) {
 
-  const monthSelect = useRef();
-  const yearSelect = useRef();
-  const calendarBody = useRef();
+  const monthSelect = useRef<HTMLSelectElement>(null);
+  const yearSelect = useRef<HTMLSelectElement>(null);
   const [calendarData, setCalendarData] = useState<Date[]>([])
 
   // on mount render current month days
   useEffect(() => {
     // set current month 
-    monthSelect.current.value = new Date().getMonth();
-    setCalendarData(calcCalendarDays(monthSelect.current!, yearSelect.current!));
+    setCalendarData(calcCalendarDays(monthSelect.current!.value, yearSelect.current!.value));
   }, [])
 
   function showHideCalendarMonths() {
-    console.log(monthSelect)
     // on change year or month gets updated
     // need to render new calendar by adding new days to calendar data state
-    setCalendarData(calcCalendarDays(monthSelect.current!, yearSelect.current!))
+    setCalendarData(calcCalendarDays(monthSelect.current!.value, yearSelect.current!.value))
   }
 
   return (
@@ -60,19 +63,19 @@ export default function Calendar(
               </select>
             </span>
             <span className={styles.pickMonth}>Month: 
-              <select ref={monthSelect} onChange={() => showHideCalendarMonths()}>
-                <option value="0">January</option>
-                <option value="1">February</option>
-                <option value="2">March</option>
-                <option value="3">April</option>
-                <option value="4">May</option>
-                <option value="5">June</option>
-                <option value="6">July</option>
-                <option value="7">August</option>
-                <option value="8">September</option>
-                <option value="9">October</option>
-                <option value="10">November</option>
-                <option value="11">December</option>
+              <select 
+                ref={monthSelect} 
+                defaultValue={new Date().getMonth()} 
+                onChange={() => showHideCalendarMonths()}>
+                {
+                  monthData.map((month, i) => (
+                    <option
+                      key={month} 
+                      value={i}>
+                      {month}
+                    </option>
+                  ))
+                }
               </select>
             </span>
           </div>
@@ -88,7 +91,7 @@ export default function Calendar(
           </div>
         </div>
 
-        <div ref={calendarBody} className={styles.datepickerBody}>
+        <div className={styles.datepickerBody}>
           <div className={styles.monthWrap} data-month={monthSelect.current?.value} data-year={yearSelect.current?.value} >
           {
             calendarData.map((day, i) => (

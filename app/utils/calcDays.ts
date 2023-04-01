@@ -1,13 +1,13 @@
 
 // populate body of calendar with accurate days of selected month & year
 export function calcCalendarDays(
-  monthSelect: HTMLSelectElement, 
-  yearSelect: HTMLSelectElement) {
+  monthSelect: string, 
+  yearSelect: string) {
 
   const data: Date[] = []; 
   // Date variables to calculate previous, current and next months dates
-  let selectedMonth = Number(monthSelect.value);
-  let selectedYear = Number(yearSelect.value);
+  let selectedMonth = Number(monthSelect);
+  let selectedYear = Number(yearSelect);
   let currentMonth = new Date(selectedYear, selectedMonth, 1);
   let firstDayPrevMonth = new Date(selectedYear, selectedMonth, 0).getDate();
   // getDay() returns day as int 0=sun, 1=mon.. 6=sat etc
