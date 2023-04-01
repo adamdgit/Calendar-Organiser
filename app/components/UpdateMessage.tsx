@@ -7,7 +7,7 @@ export default function UpdateMessage(props:
   useEffect(() => {
     setTimeout(() => {
       props.setNeedsUpdate(false)
-    }, 2000)
+    }, 2500)
   }, [props.needsUpdate])
 
   return (

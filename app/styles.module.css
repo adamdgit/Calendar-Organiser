@@ -146,7 +146,7 @@
 }
 
 .editbtn:hover .editTooltip {
-  top: 40px;
+  top: 30px;
   opacity: 1;
 }
 
