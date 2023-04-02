@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react'
 import { calcCalendarDays } from "../utils/calcDays"
 import DayOption from './DayOption'
 import styles from '../styles.module.css'
+import { calendarEventProps } from './App'
 
 // create dynamic dates based on current year forward
 const yearData:Number[] = []
@@ -21,7 +22,7 @@ const monthData = [
 type calendarProps = {
   setPopupIsVisible: (args: boolean) => void,
   setSelectedDate: (args: string) => void,
-  eventItems: []
+  eventItems: calendarEventProps[]
 }
 
 export default function Calendar(

@@ -8,7 +8,8 @@ export async function getUserEvents(email:string) {
       select: { calendarEvent: true },
       where: { email: email }
     })
-    return events
+    if (events.length === 0) return new Error("No events found")
+    return events[0].calendarEvent
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       console.log('Error occurred')

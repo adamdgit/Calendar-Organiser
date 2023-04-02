@@ -2,13 +2,14 @@
 
 import { useMemo, useState } from "react";
 import styles from '../styles.module.css'
+import { calendarEventProps } from "./App";
 
 type dayOptionProps = {
   day: Date,
   monthSelect: any,
   setPopupIsVisible: (args: boolean) => void,
   setSelectedDate: (args: string) => void,
-  eventItems: []
+  eventItems: calendarEventProps[]
 }
 
 export default function DayOption(

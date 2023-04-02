@@ -5,11 +5,20 @@ import { getUserEvents } from "./prismaDB/users";
 
 export default async function Home() {
 
-  const session = await getServerSession(authOptions);
-  const events = await getUserEvents(session?.email);
-
-  if (session) {
-    return <App events={events[0].calendarEvent} />
+  let events = undefined;
+  const session = await getServerSession(authOptions)
+  
+  if (session !== null) {
+    if (session?.user?.email !== null && session?.user?.email !== undefined) {
+      try {
+        const data = await getUserEvents(session?.user?.email)
+        events = data
+        console.log(events)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    return <App events={events} />
   } else {
     return <div>Please login to view your calendar.</div>
   }

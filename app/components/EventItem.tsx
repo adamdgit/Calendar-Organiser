@@ -20,7 +20,7 @@ export default function EventItem({ item, setEventItems } : eventItemProps) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ 
-        id: id
+        id: id,
       })
     })
     .then(res => res.json())

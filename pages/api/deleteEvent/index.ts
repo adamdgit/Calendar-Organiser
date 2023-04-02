@@ -1,16 +1,23 @@
 import { deleteEvent, getUserEvents } from "@/app/prismaDB/users"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { NextApiRequest, NextApiResponse } from "next";
+import { z } from "zod";
 
-export default async function handler(req: Request, res: Response) {
+const bodySchema = z.object({
+  id: z.string(),
+})
 
-  const session = getServerSession(authOptions)
-  let error = false;
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method !== "POST") return Error("Wrong request method") 
-    const data = req.body
-    await deleteEvent(data.id)
-      .catch(err => error = err)
-    const events = await getUserEvents(session.email)
-    if (!error) res.status(200).json(events)
+
+  const result = bodySchema.safeParse(req.body);
+  if (result.success) {
+    try {
+      await deleteEvent(result.data.id)
+      res.status(200).json({ message: "Event deleted" })
+    } catch (error){
+      res.status(500).json({ error })
+    }
+  }
+
 }

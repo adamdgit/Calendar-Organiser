@@ -18,7 +18,7 @@ export default function App({ events }:any) {
 
   const [selectedDate, setSelectedDate] = useState("");
   const [popupIsVisible, setPopupIsVisible] = useState(false);
-  const [eventItems, setEventItems] = useState(events)
+  const [eventItems, setEventItems] = useState<calendarEventProps[]>(events)
   const [updateMsg, setUpdateMsg] = useState("")
   const [needsUpdate, setNeedsUpdate] = useState(false)
 
