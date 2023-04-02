@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Calendar from './Calendar';
-import EventPopup from './EventPopup';
+import EventPopup from './eventPopup';
 import UserEvents from './UserEvents';
 import styles from '../styles.module.css'
 import UpdateMessage from './UpdateMessage';
