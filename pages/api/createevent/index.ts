@@ -1,11 +1,11 @@
 import { createEvent, getUserEvents } from "@/app/prismaDB/users"
 import { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
+import { array, z } from "zod";
 
 const bodySchema = z.object({
   email: z.string(),
   description: z.string(),
-  date: z.date()
+  date: z.string()
 })
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -22,9 +22,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       } catch (error) {
         res.status(500).json({ error })
       }
-    } catch (error){
+    } catch (error) {
       res.status(500).json({ error })
     }
+  } else {
+    console.error(result.error)
   }
 
-}
+} 
