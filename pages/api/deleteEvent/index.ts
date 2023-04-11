@@ -4,6 +4,7 @@ import { z } from "zod";
 
 const bodySchema = z.object({
   id: z.string(),
+  email: z.string(),
 })
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -14,7 +15,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (result.success) {
     try {
       await deleteEvent(result.data.id)
-      res.status(200).json({ message: "Event deleted" })
+      try {
+        const events = await getUserEvents(result.data.email)
+        res.status(200).json({ events })
+      } catch (error) {
+        res.status(500).json({ error })
+      }
     } catch (error){
       res.status(500).json({ error })
     }
