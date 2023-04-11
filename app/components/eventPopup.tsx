@@ -34,7 +34,7 @@ export default function EventPopup(
       })
     })
     .then(res => res.json())
-    .then(data => setEventItems(data[0].calendarEvent))
+    .then(data => setEventItems(data.events))
     .catch(err => console.error(err))
 
     setNeedsUpdate(true);
