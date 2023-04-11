@@ -2,6 +2,7 @@ import { useState } from "react";
 import { calendarEventProps } from "./App";
 import styles from "../styles.module.css"
 import Tooltip from "./Tooltip";
+import { useSession } from "next-auth/react";
 
 type eventItemProps = {
   item: calendarEventProps,
@@ -10,6 +11,7 @@ type eventItemProps = {
 
 export default function EventItem({ item, setEventItems } : eventItemProps) {
 
+  const session = useSession();
   const [editEnabled, setEditEnabled] = useState(false)
   const [desc, setDesc] = useState(item.description)
 
@@ -21,10 +23,11 @@ export default function EventItem({ item, setEventItems } : eventItemProps) {
       },
       body: JSON.stringify({ 
         id: id,
+        email: session.data?.user?.email
       })
     })
     .then(res => res.json())
-    .then(data => setEventItems(data[0].calendarEvent))
+    .then(data => setEventItems(data.events))
     .catch(err => console.error(err));
   };
 
@@ -37,7 +40,8 @@ export default function EventItem({ item, setEventItems } : eventItemProps) {
       },
       body: JSON.stringify({ 
         id: id,
-        description: description
+        description: description,
+        email: session.data?.user?.email
       })
     })
     .then(res => res.json())
