@@ -4,23 +4,30 @@ const client = new PrismaClient();
 // get users calendar events
 export async function getUserEvents(email:string) {
   try {
-    const events = await client.user.findMany({ 
+    const data = await client.user.findMany({ 
       select: { calendarEvent: true },
       where: { email: email }
     })
-    if (events.length === 0) return new Error("No events found")
-    return events[0].calendarEvent
+    if (data.length === 0) return new Error("No events found")
+    const events = data[0].calendarEvent.map(event => {
+      return {
+        id: event.id,
+        date: event.date.toString(),
+        description: event.description,
+        authorEmail: event.authorEmail,
+      };
+    })
+    return events
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       console.log('Error occurred')
     }
     throw error
   }
-
 }
 
 // create new event for user
-export async function createEvent(email:string, date: Date, description: string) {
+export async function createEvent(email:string, date:string, description:string) {
   try {
     await client.event.create({
       data: {
@@ -38,7 +45,7 @@ export async function createEvent(email:string, date: Date, description: string)
 }
 
 // update event by event id
-export async function updateEvent(id:string, description: string) {
+export async function updateEvent(id:string, description:string) {
   try {
     await client.event.update({
       where: { id: id },
@@ -53,7 +60,7 @@ export async function updateEvent(id:string, description: string) {
 }
 
 // delete selected event by event id
-export async function deleteEvent(id: string) {
+export async function deleteEvent(id:string) {
   try {
     await client.event.delete({
       where: { id: id }
